@@ -26,13 +26,12 @@ public class Database {
 	private final Properties properties;
 
 	public Database(Properties properties) throws FileNotFoundException, IOException {
-        if (isFirstInstance) {
-            LOG.debug("Loading database properties from db.properties");
-            isFirstInstance = false;
-        }
-        this.properties = properties;
-    }
-
+		if (isFirstInstance) {
+			LOG.debug("Loading database properties from db.properties");
+			isFirstInstance = false;
+		}
+		this.properties = properties;
+	}
 
 	public Connection getConnection() throws SQLException {
 		if (connection == null || connection.isClosed()) {

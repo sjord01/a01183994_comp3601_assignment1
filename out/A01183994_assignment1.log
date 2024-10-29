@@ -175,3 +175,205 @@
 2024-10-27 20:02:54,281 main INFO  dao.CustomerDao (CustomerDao.java:90) - Table A01183994_Customers created successfully.
 2024-10-27 20:02:56,362 main INFO  a01183994.Assignment1 (Assignment1.java:172) - Customers added successfully from file.
 2024-10-27 20:02:56,538 main INFO  a01183994.Assignment1 (Assignment1.java:132) - Assignment1 execution completed.
+2024-10-28 17:30:47,515 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 17:31:02,387 main ERROR a01183994.Assignment1 (Assignment1.java:57) - Error occurred: 
+com.microsoft.sqlserver.jdbc.SQLServerException: The TCP/IP connection to the host java-sql.ad.bcit.ca, port 1433 has failed. Error: "null. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall.".
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:190) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerException.ConvertConnectExceptionToSQLServerException(SQLServerException.java:241) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SocketFinder.findSocket(IOBuffer.java:2243) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.TDSChannel.open(IOBuffer.java:491) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:1309) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:991) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:827) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:1012) ~[sqljdbc4-4.0.jar:?]
+	at java.sql.DriverManager.getConnection(DriverManager.java:677) ~[java.sql:?]
+	at java.sql.DriverManager.getConnection(DriverManager.java:228) ~[java.sql:?]
+	at a01183994.database.Database.connect(Database.java:50) ~[bin/:?]
+	at a01183994.Assignment1.connect(Assignment1.java:137) ~[bin/:?]
+	at a01183994.Assignment1.run(Assignment1.java:108) ~[bin/:?]
+	at a01183994.Assignment1.main(Assignment1.java:55) [bin/:?]
+2024-10-28 17:31:06,852 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 17:31:07,224 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 17:31:07,235 main INFO  dao.CustomerDao (CustomerDao.java:90) - Table A01183994_Customers created successfully.
+2024-10-28 17:31:09,213 main INFO  a01183994.Assignment1 (Assignment1.java:172) - Customers added successfully from file.
+2024-10-28 17:31:09,570 main INFO  a01183994.Assignment1 (Assignment1.java:132) - Assignment1 execution completed.
+2024-10-28 17:31:26,647 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='770-916-9879', firstName='Lennie', lastName='Wood', street='Ap #657-491 Etiam St.', city='Sachs Harbour', postalCode='50804', emailAddress='dui@non.co.uk', joinedDate='2005-05-24' WHERE id='1352'
+2024-10-28 17:31:41,480 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='770-916-9879', firstName='Len', lastName='Wood', street='Ap #657-491 Etiam St.', city='Sachs Harbour', postalCode='50804', emailAddress='dui@non.co.uk', joinedDate='2005-05-24' WHERE id='1352'
+2024-10-28 17:55:28,427 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 17:55:28,827 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 17:55:28,838 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 17:55:30,859 main INFO  a01183994.Assignment1 (Assignment1.java:173) - Customers added successfully from file.
+2024-10-28 17:55:31,301 main INFO  a01183994.Assignment1 (Assignment1.java:133) - Assignment1 execution completed.
+2024-10-28 17:55:45,474 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jezz', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 17:55:51,730 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='586-899-1820', firstName='Nashville', lastName='Hardin', street='Ap #3116792 Elit Av.', city='Palestrina', postalCode='13181', emailAddress='ultricies.ornare@arcuMorbi.com', joinedDate='2010-01-14' WHERE id='1298'
+2024-10-28 17:56:37,728 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 17:56:38,064 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 17:56:38,075 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 17:56:40,069 main INFO  a01183994.Assignment1 (Assignment1.java:173) - Customers added successfully from file.
+2024-10-28 17:56:40,256 main INFO  a01183994.Assignment1 (Assignment1.java:133) - Assignment1 execution completed.
+2024-10-28 17:56:53,995 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jescie', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 17:57:01,709 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='586-899-1820', firstName='Nashville', lastName='Hardin', street='Ap #3116792 Elit Av.', city='Palestrina', postalCode='13181', emailAddress='ultricies.ornare@arcuMorbi.com', joinedDate='2010-01-14' WHERE id='1298'
+2024-10-28 17:57:16,438 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='586-899-1820', firstName='Nash', lastName='Hardin', street='Ap #3116792 Elit Av.', city='Palestrina', postalCode='13181', emailAddress='ultricies.ornare@arcuMorbi.com', joinedDate='2010-01-14' WHERE id='1298'
+2024-10-28 18:07:00,762 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 18:07:01,121 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 18:07:01,133 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 18:07:03,233 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 18:07:03,595 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 18:07:17,986 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jezzzzz', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juanad1wd1wd', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 18:07:28,066 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:216) - Cleaning up CustomerDao resources.
+2024-10-28 18:07:28,151 AWT-EventQueue-0 DEBUG dao.CustomerDao (CustomerDao.java:220) - IF OBJECT_ID('A01183994_Customers', 'U') IS NOT NULL DROP TABLE A01183994_Customers
+2024-10-28 18:07:28,164 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:222) - Table A01183994_Customers dropped successfully.
+2024-10-28 18:07:32,462 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 18:07:32,783 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 18:07:32,795 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 18:07:34,841 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 18:07:35,025 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 18:14:02,635 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:216) - Cleaning up CustomerDao resources.
+2024-10-28 18:14:02,723 AWT-EventQueue-0 DEBUG dao.CustomerDao (CustomerDao.java:220) - IF OBJECT_ID('A01183994_Customers', 'U') IS NOT NULL DROP TABLE A01183994_Customers
+2024-10-28 18:14:02,735 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:222) - Table A01183994_Customers dropped successfully.
+2024-10-28 18:16:13,659 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 18:16:14,015 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 18:16:14,028 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 18:16:15,982 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 18:16:16,353 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 18:17:47,542 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 18:17:48,220 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 18:17:48,230 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 18:17:50,662 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 18:17:51,148 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 18:20:55,283 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 18:20:55,633 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 18:20:55,645 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 18:20:57,682 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 18:20:58,046 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 18:25:18,540 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 18:25:18,957 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 18:25:18,969 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 18:25:21,174 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 18:25:21,565 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 18:26:04,260 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 18:26:04,591 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 18:26:04,602 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 18:26:06,668 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 18:26:06,843 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 18:28:05,954 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 18:28:06,316 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 18:28:06,328 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 18:28:08,418 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 18:28:08,764 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 18:28:35,667 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jescie', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 18:29:25,115 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 18:29:25,458 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 18:29:25,470 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 18:29:27,437 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 18:29:27,790 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 18:30:06,143 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='955-846-2595', firstName='Malcolm', lastName='Henry', street='6062161 Sagittis Street', city='Cochrane', postalCode='R62 2CH', emailAddress='natoque.penatibus.et@nonsapien.net', joinedDate='2007-04-27' WHERE id='1224'
+2024-10-28 18:38:23,010 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 18:38:23,012 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 18:38:23,448 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 18:38:23,448 main ERROR a01183994.Assignment1 (Assignment1.java:58) - Error occurred: 
+com.microsoft.sqlserver.jdbc.SQLServerException: Cannot drop the table 'A01183994_Customers', because it does not exist or you do not have permission.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:216) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1515) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:792) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:689) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:5696) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1715) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:180) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:155) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeUpdate(SQLServerStatement.java:642) ~[sqljdbc4-4.0.jar:?]
+	at a01183994.database.util.DbUtil.executeUpdate(DbUtil.java:36) ~[bin/:?]
+	at a01183994.Assignment1.dropTable(Assignment1.java:141) ~[bin/:?]
+	at a01183994.Assignment1.run(Assignment1.java:108) ~[bin/:?]
+	at a01183994.Assignment1.main(Assignment1.java:56) [bin/:?]
+2024-10-28 18:38:23,470 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 18:38:23,483 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 18:38:25,530 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 18:38:25,911 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 22:38:35,202 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 22:38:46,193 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 22:38:46,555 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 22:38:46,568 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 22:38:47,512 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 22:38:47,512 main ERROR a01183994.Assignment1 (Assignment1.java:58) - Error occurred: 
+com.microsoft.sqlserver.jdbc.SQLServerException: Invalid object name 'A01183994_Customers'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:216) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1515) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:404) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:350) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:5696) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1715) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:180) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:155) ~[sqljdbc4-4.0.jar:?]
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeUpdate(SQLServerPreparedStatement.java:314) ~[sqljdbc4-4.0.jar:?]
+	at a01183994.database.dao.CustomerDao.add(CustomerDao.java:121) ~[bin/:?]
+	at a01183994.Assignment1.insertCustomers(Assignment1.java:165) ~[bin/:?]
+	at a01183994.Assignment1.run(Assignment1.java:111) ~[bin/:?]
+	at a01183994.Assignment1.main(Assignment1.java:56) [bin/:?]
+2024-10-28 22:38:47,534 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 22:38:47,547 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 22:38:49,601 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 22:38:50,049 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 22:39:32,479 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 22:39:32,830 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 22:39:32,842 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 22:39:34,955 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 22:39:35,300 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 22:39:57,445 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 22:39:57,812 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 22:39:57,826 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 22:40:00,017 main INFO  a01183994.Assignment1 (Assignment1.java:168) - Customers added successfully from file.
+2024-10-28 22:40:00,377 main INFO  a01183994.Assignment1 (Assignment1.java:128) - Assignment1 execution completed.
+2024-10-28 22:58:17,658 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 23:07:15,224 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 23:07:30,297 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jezz', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 23:07:47,382 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='955-846-2595', firstName='Malcolm', lastName='Henry', street='6062161 Sagittis Street', city='Cochrane', postalCode='R62 2CH', emailAddress='natoque.penatibus.et@nonsapien.net', joinedDate='2007-04-27' WHERE id='1224'
+2024-10-28 23:07:58,143 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jescie', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 23:12:02,876 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 23:12:16,578 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jezz', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 23:12:20,508 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jezz', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 23:12:22,275 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jezz', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 23:12:37,292 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jescie', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 23:13:50,758 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:216) - Cleaning up CustomerDao resources.
+2024-10-28 23:13:50,830 AWT-EventQueue-0 DEBUG dao.CustomerDao (CustomerDao.java:220) - IF OBJECT_ID('A01183994_Customers', 'U') IS NOT NULL DROP TABLE A01183994_Customers
+2024-10-28 23:13:50,845 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:222) - Table A01183994_Customers dropped successfully.
+2024-10-28 23:13:55,075 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 23:13:55,588 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 23:13:55,632 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 23:13:57,821 main INFO  a01183994.Assignment1 (Assignment1.java:241) - Customers added successfully from file.
+2024-10-28 23:14:05,938 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jezz', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 23:14:12,427 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:216) - Cleaning up CustomerDao resources.
+2024-10-28 23:14:12,500 AWT-EventQueue-0 DEBUG dao.CustomerDao (CustomerDao.java:220) - IF OBJECT_ID('A01183994_Customers', 'U') IS NOT NULL DROP TABLE A01183994_Customers
+2024-10-28 23:14:12,513 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:222) - Table A01183994_Customers dropped successfully.
+2024-10-28 23:17:38,186 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 23:17:38,562 main DEBUG dao.Dao (Dao.java:30) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 23:17:38,574 main INFO  dao.CustomerDao (CustomerDao.java:92) - Table A01183994_Customers created successfully.
+2024-10-28 23:17:40,744 main INFO  a01183994.Assignment1 (Assignment1.java:241) - Customers added successfully from file.
+2024-10-28 23:17:48,174 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jezz', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 23:23:15,340 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 23:23:24,051 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:40) - UPDATE A01183994_Customers SET phone='725-538-4828', firstName='Jescie', lastName='Mcbride', street='Ap #944-4855 Erat, St.', city='Santa Juana', postalCode='58209', emailAddress='quis.urna@semperauctor.co.uk', joinedDate='2008-02-17' WHERE id='1175'
+2024-10-28 23:25:41,043 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 23:26:49,882 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:200) - Cleaning up CustomerDao resources.
+2024-10-28 23:26:49,970 AWT-EventQueue-0 DEBUG dao.CustomerDao (CustomerDao.java:203) - IF OBJECT_ID('A01183994_Customers', 'U') IS NOT NULL DROP TABLE A01183994_Customers
+2024-10-28 23:26:49,982 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:205) - Table A01183994_Customers dropped successfully.
+2024-10-28 23:28:33,161 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 23:28:33,526 main DEBUG dao.Dao (Dao.java:29) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 23:28:33,540 main INFO  dao.CustomerDao (CustomerDao.java:83) - Table A01183994_Customers created successfully.
+2024-10-28 23:28:35,729 main INFO  a01183994.Assignment1 (Assignment1.java:107) - Customers added successfully from file.
+2024-10-28 23:40:36,156 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 23:40:49,111 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:38) - UPDATE A01183994_Customers SET phone='805-671-1896', firstName='Kirestin', lastName='Gill', street='P.O. Box 684, 9957 Aliquam Road', city='Hereford', postalCode='1545', emailAddress='sed.tortor.Integer@pedemalesuada.co.uk', joinedDate='2006-03-28' WHERE id='1567'
+2024-10-28 23:40:59,096 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:38) - UPDATE A01183994_Customers SET phone='905-432-1638', firstName='Bryar', lastName='Lewis', street='552-8294 Egestas St.', city='Serampore', postalCode='C2T 2WF', emailAddress='dolor@atarcuVestibulum.co.uk', joinedDate='2004-09-20' WHERE id='1399'
+2024-10-28 23:41:23,865 AWT-EventQueue-0 DEBUG dao.Dao (Dao.java:38) - UPDATE A01183994_Customers SET phone='507-888-4008', firstName='Elvis', lastName='Reese', street='7614 Eleifend Street', city='Bassano in Teverina', postalCode='767849', emailAddress='fermentum.vel@odioNam.ca', joinedDate='2009-01-05' WHERE id='3820'
+2024-10-28 23:41:32,552 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:200) - Cleaning up CustomerDao resources.
+2024-10-28 23:41:32,629 AWT-EventQueue-0 DEBUG dao.CustomerDao (CustomerDao.java:203) - IF OBJECT_ID('A01183994_Customers', 'U') IS NOT NULL DROP TABLE A01183994_Customers
+2024-10-28 23:41:32,642 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:205) - Table A01183994_Customers dropped successfully.
+2024-10-28 23:41:40,707 main DEBUG database.Database (Database.java:30) - Loading database properties from db.properties
+2024-10-28 23:41:41,029 main DEBUG dao.Dao (Dao.java:29) - CREATE TABLE A01183994_Customers (id VARCHAR(20), firstName VARCHAR(50), lastName VARCHAR(50), street VARCHAR(100), city VARCHAR(50), postalCode VARCHAR(10), phone VARCHAR(20), emailAddress VARCHAR(100), joinedDate DATE, PRIMARY KEY (id))
+2024-10-28 23:41:41,041 main INFO  dao.CustomerDao (CustomerDao.java:83) - Table A01183994_Customers created successfully.
+2024-10-28 23:41:43,115 main INFO  a01183994.Assignment1 (Assignment1.java:107) - Customers added successfully from file.
+2024-10-28 23:44:01,018 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:200) - Cleaning up CustomerDao resources.
+2024-10-28 23:44:01,105 AWT-EventQueue-0 DEBUG dao.CustomerDao (CustomerDao.java:203) - IF OBJECT_ID('A01183994_Customers', 'U') IS NOT NULL DROP TABLE A01183994_Customers
+2024-10-28 23:44:01,119 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:205) - Table A01183994_Customers dropped successfully.
+2024-10-28 23:44:08,143 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:200) - Cleaning up CustomerDao resources.
+2024-10-28 23:44:08,228 AWT-EventQueue-0 DEBUG dao.CustomerDao (CustomerDao.java:203) - IF OBJECT_ID('A01183994_Customers', 'U') IS NOT NULL DROP TABLE A01183994_Customers
+2024-10-28 23:44:08,238 AWT-EventQueue-0 INFO  dao.CustomerDao (CustomerDao.java:205) - Table A01183994_Customers dropped successfully.

@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 
 import a01183994.database.Database;
 import a01183994.database.dao.CustomerDao;
+import a01183994.database.util.ApplicationException;
 import a01183994.database.util.SortByListState;
 import net.miginfocom.swing.MigLayout;
 
@@ -40,18 +41,21 @@ public class BooksAppFrame extends JFrame {
 		setSize(800, 600);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                try {
+
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
 					shutdownDatabase();
 				} catch (SQLException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (ApplicationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-            }
-        });
+			}
+		});
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -63,20 +67,20 @@ public class BooksAppFrame extends JFrame {
 		menuFileDrop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int result = JOptionPane.showConfirmDialog(BooksAppFrame.this,
-		                "Are you sure you want to delete all Customer input data?", "Confirm Drop",
-		                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-		        if (result == JOptionPane.YES_OPTION) {
-		            try {
-		                customerDao.cleanup();
-		                JOptionPane.showMessageDialog(BooksAppFrame.this, "All customer data has been deleted.",
-		                        "Data Dropped", JOptionPane.INFORMATION_MESSAGE);
-		                System.exit(0);  // Exit the application after dropping the table
-		            } catch (SQLException ex) {
-		                JOptionPane.showMessageDialog(BooksAppFrame.this,
-		                        "Error dropping customer data: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		            }
-		        }
-	            }
+						"Are you sure you want to delete all Customer input data?", "Confirm Drop",
+						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				if (result == JOptionPane.YES_OPTION) {
+					try {
+						customerDao.cleanup();
+						JOptionPane.showMessageDialog(BooksAppFrame.this, "All customer data has been deleted.",
+								"Data Dropped", JOptionPane.INFORMATION_MESSAGE);
+						System.exit(0); // Exit the application after dropping the table
+					} catch (SQLException ex) {
+						JOptionPane.showMessageDialog(BooksAppFrame.this,
+								"Error dropping customer data: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
 		});
 		menuFile.add(menuFileDrop);
 
@@ -91,8 +95,11 @@ public class BooksAppFrame extends JFrame {
 				} catch (SQLException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (ApplicationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-		        dispose();
+				dispose();
 				System.exit(0);
 			}
 		});
@@ -105,18 +112,14 @@ public class BooksAppFrame extends JFrame {
 		JMenuItem menuCustomersCount = new JMenuItem("Count");
 		menuCustomersCount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				  try {
-			            int count = customerDao.getCustomerCount();
-			            JOptionPane.showMessageDialog(BooksAppFrame.this,
-			                "Total number of customers: " + count,
-			                "Customer Count",
-			                JOptionPane.INFORMATION_MESSAGE);
-			        } catch (SQLException ex) {
-			            JOptionPane.showMessageDialog(BooksAppFrame.this,
-			                "Error getting customer count: " + ex.getMessage(),
-			                "Error",
-			                JOptionPane.ERROR_MESSAGE);
-			        }
+				try {
+					int count = customerDao.getCustomerCount();
+					JOptionPane.showMessageDialog(BooksAppFrame.this, "Total number of customers: " + count,
+							"Customer Count", JOptionPane.INFORMATION_MESSAGE);
+				} catch (SQLException ex) {
+					JOptionPane.showMessageDialog(BooksAppFrame.this,
+							"Error getting customer count: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		menuCustomers.add(menuCustomersCount);
@@ -135,7 +138,13 @@ public class BooksAppFrame extends JFrame {
 		JMenuItem menuCustomersList = new JMenuItem("List");
 		menuCustomersList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CustomerListDialog dialog = new CustomerListDialog(customerDao);
+				CustomerListDialog dialog = null;
+				try {
+					dialog = new CustomerListDialog(customerDao);
+				} catch (ApplicationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				dialog.setVisible(true);
 			}
 		});
@@ -163,11 +172,10 @@ public class BooksAppFrame extends JFrame {
 		contentPane.setLayout(new MigLayout("", "[][]", "[][]"));
 	}
 
-	private void shutdownDatabase() throws SQLException, IOException {
-        customerDao.saveChanges();
- 
-    }
-	
+	private void shutdownDatabase() throws SQLException, IOException, ApplicationException {
+		customerDao.saveChanges();
+
+	}
 
 	@Override
 	public void dispose() {
@@ -179,8 +187,11 @@ public class BooksAppFrame extends JFrame {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ApplicationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		super.dispose();
 	}
-	
+
 }

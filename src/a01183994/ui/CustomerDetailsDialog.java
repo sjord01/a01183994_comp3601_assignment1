@@ -2,6 +2,12 @@ package a01183994.ui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -13,12 +19,11 @@ import javax.swing.border.EmptyBorder;
 
 import a01183994.data.Customer;
 import a01183994.database.dao.CustomerDao;
+import a01183994.database.util.ApplicationException;
+import a01183994.database.util.Formatter;
+import a01183994.database.util.Validator;
 import a01183994.ui.util.CustomerListUpdateListener;
 import net.miginfocom.swing.MigLayout;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.awt.event.ActionEvent;
 
 public class CustomerDetailsDialog extends JDialog {
 
@@ -34,20 +39,21 @@ public class CustomerDetailsDialog extends JDialog {
 	private JTextField textField_email;
 	private JTextField textField_joinDate;
 	private Customer customer;
-    private CustomerDao customerDao;
-    private CustomerListUpdateListener updateListener;
+	private CustomerDao customerDao;
+	private CustomerListUpdateListener updateListener;
 
 	/**
 	 * Create the dialog.
 	 */
-    public CustomerDetailsDialog(Customer customer, CustomerDao customerDao, CustomerListUpdateListener updateListener) {
-        this.customer = customer;
-        this.customerDao = customerDao;
-        this.updateListener = updateListener;
+	public CustomerDetailsDialog(Customer customer, CustomerDao customerDao,
+			CustomerListUpdateListener updateListener) {
+		this.customer = customer;
+		this.customerDao = customerDao;
+		this.updateListener = updateListener;
 		setSize(800, 600);
 		setLocationRelativeTo(null);
-	    setModalityType(ModalityType.APPLICATION_MODAL);
-	    
+		setModalityType(ModalityType.APPLICATION_MODAL);
+
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -152,8 +158,13 @@ public class CustomerDetailsDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						saveChanges();
-						dispose();
+						try {
+							saveChanges();
+						} catch (ApplicationException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						// dispose();
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -172,27 +183,90 @@ public class CustomerDetailsDialog extends JDialog {
 			}
 		}
 	}
-	
-    private void saveChanges() {
-        Customer updatedCustomer = new Customer.Builder(customer.getId(), textField_phone.getText())
-            .setFirstName(textField_firstName.getText())
-            .setLastName(textField_lastName.getText())
-            .setStreetName(textField_street.getText())
-            .setCityName(textField_city.getText())
-            .setPostalCode(textField_postalCode.getText())
-            .setEmail(textField_email.getText())
-            .setJoinDate(textField_joinDate.getText())
-            .build();
-        try {
-            customerDao.update(updatedCustomer);
-            if (updateListener != null) {
-                updateListener.onCustomerUpdated(updatedCustomer);
-            }
-            JOptionPane.showMessageDialog(this, "Customer updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-            dispose();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error updating customer: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-}
 
+	private List<String> validateInputs() {
+		List<String> errors = new ArrayList<>();
+
+		try {
+			Validator.validateString(textField_firstName.getText());
+		} catch (ApplicationException e) {
+			errors.add("Invalid First Name: Must not be empty!");
+		}
+
+		try {
+			Validator.validateString(textField_lastName.getText());
+		} catch (ApplicationException e) {
+			errors.add("Invalid Last Name: Must not be empty!");
+		}
+
+		try {
+			Validator.validateString(textField_street.getText());
+		} catch (ApplicationException e) {
+			errors.add("Invalid Street: Must not be empty!");
+		}
+
+		try {
+			Validator.validateString(textField_city.getText());
+		} catch (ApplicationException e) {
+			errors.add("Invalid City: Must not be empty!");
+		}
+
+		try {
+			Validator.validateString(textField_postalCode.getText());
+		} catch (ApplicationException e) {
+			errors.add("Invalid Postal Code: Must not be empty!");
+		}
+
+		try {
+			Validator.validateEmail(textField_email.getText());
+		} catch (ApplicationException e) {
+			errors.add("Invalid email: " + textField_email.getText());
+		}
+
+		try {
+			Validator.validatePhoneNumber(textField_phone.getText());
+		} catch (ApplicationException e) {
+			errors.add("Invalid phone number: " + textField_phone.getText());
+		}
+
+		try {
+			Validator.validateJoinedDate(textField_joinDate.getText());
+		} catch (ApplicationException e) {
+			errors.add("Invalid joined date: " + textField_joinDate.getText());
+		}
+
+		return errors;
+	}
+
+	private void saveChanges() throws ApplicationException {
+
+		List<String> validationErrors = validateInputs();
+
+		if (!validationErrors.isEmpty()) {
+			String errorMessage = String.join("\n", validationErrors);
+			JOptionPane.showMessageDialog(this, "Please correct the following errors:\n" + errorMessage,
+					"Validation Error", JOptionPane.ERROR_MESSAGE);
+			return; // Don't close the dialog, allow the user to correct the input
+		}
+
+		try {
+			Customer updatedCustomer = new Customer.Builder(customer.getId(), Formatter.formatPhone(textField_phone.getText()))
+					.setFirstName(textField_firstName.getText()).setLastName(textField_lastName.getText())
+					.setStreetName(textField_street.getText()).setCityName(textField_city.getText())
+					.setPostalCode(textField_postalCode.getText()).setEmail(textField_email.getText())
+					.setJoinDate(textField_joinDate.getText()).build();
+
+			customerDao.update(updatedCustomer);
+			if (updateListener != null) {
+				updateListener.onCustomerUpdated(updatedCustomer);
+			}
+			JOptionPane.showMessageDialog(this, "Customer updated successfully", "Success",
+					JOptionPane.INFORMATION_MESSAGE);
+			dispose(); // Only close the dialog if update is successful
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(this, "Error updating customer: " + e.getMessage(), "Database Error",
+					JOptionPane.ERROR_MESSAGE);
+			// Don't close the dialog, allow the user to try again
+		}
+	}
+}

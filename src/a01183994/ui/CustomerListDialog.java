@@ -27,9 +27,10 @@ import javax.swing.event.ListSelectionListener;
 
 import a01183994.data.Customer;
 import a01183994.database.dao.CustomerDao;
+import a01183994.database.util.ApplicationException;
 import a01183994.database.util.SortByListState;
-import a01183994.ui.util.CustomerListUpdateListener;
 import a01183994.io.CustomerReport;
+import a01183994.ui.util.CustomerListUpdateListener;
 import net.miginfocom.swing.MigLayout;
 
 public class CustomerListDialog extends JDialog implements CustomerListUpdateListener {
@@ -40,8 +41,9 @@ public class CustomerListDialog extends JDialog implements CustomerListUpdateLis
     private JList<Customer> list;
 	/**
 	 * Create the dialog.
+	 * @throws ApplicationException 
 	 */
-	public CustomerListDialog(CustomerDao customerDao) {
+	public CustomerListDialog(CustomerDao customerDao) throws ApplicationException {
 		setSize(800, 600);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new MigLayout("", "[grow]", "[grow][39px]"));
@@ -148,15 +150,15 @@ public class CustomerListDialog extends JDialog implements CustomerListUpdateLis
 
 	@Override
 	public void onCustomerUpdated(Customer updatedCustomer) {
-        // Find the customer in the list model and update it
-        for (int i = 0; i < listModel.getSize(); i++) {
-            Customer customer = listModel.getElementAt(i);
-            if (customer.getId().equals(updatedCustomer.getId())) {
-                listModel.setElementAt(updatedCustomer, i);
-                break;
-            }
-        }
-        // Refresh the list
-        list.repaint();
-    }
+		// Find the customer in the list model and update it
+		for (int i = 0; i < listModel.getSize(); i++) {
+			Customer customer = listModel.getElementAt(i);
+			if (customer.getId().equals(updatedCustomer.getId())) {
+				listModel.setElementAt(updatedCustomer, i);
+				break;
+			}
+		}
+		// Refresh the list
+		list.repaint();
+	}
 }

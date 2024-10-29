@@ -8,7 +8,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Properties;
 
 import javax.swing.UIManager;
@@ -22,6 +21,7 @@ import org.apache.logging.log4j.core.config.Configurator;
 import a01183994.data.Customer;
 import a01183994.database.Database;
 import a01183994.database.dao.CustomerDao;
+import a01183994.database.util.ApplicationException;
 import a01183994.database.util.DbUtil;
 import a01183994.ui.BooksAppFrame;
 
@@ -38,7 +38,6 @@ public class Assignment1 {
 
 	private static final Logger LOG = LogManager.getLogger();
 	private static Database database;
-
 	private CustomerDao customerDao;
 	private final Properties dbProperties;
 	private Connection connection;
@@ -50,20 +49,65 @@ public class Assignment1 {
 			System.exit(-1);
 		}
 
+		Assignment1 app = null;
 		try {
-			database = new Database(new Properties());
-			new Assignment1(dbPropertiesFile).run();
-		} catch (SQLException | ClassNotFoundException | IOException e) {
+			app = new Assignment1(dbPropertiesFile);
+			app.run();
+		} catch (Exception e) {
 			LOG.error("Error occurred: ", e);
 		} finally {
-//			if (database != null) {
-//				database.shutdown();
-//			}
-			//loadCustomerFrame();
+			if (app != null) {
+				app.closeDatabase();
+			}
 		}
 	}
 
-	public static void loadCustomerFrame() {
+	private Assignment1(File dbPropertiesFile) throws IOException {
+		dbProperties = new Properties();
+		dbProperties.load(new FileReader(dbPropertiesFile));
+		database = new Database(dbProperties);
+	}
+
+	private void run() throws SQLException, ClassNotFoundException, IOException, ApplicationException {
+		connect();
+		initializeDatabase();
+		loadCustomerFrame();
+	}
+
+	private void connect() throws SQLException, ClassNotFoundException {
+		database.connect();
+		connection = database.getConnection();
+		customerDao = new CustomerDao(database);
+	}
+
+	private void initializeDatabase() throws SQLException, IOException, ApplicationException {
+		if (!DbUtil.tableExists(connection, CustomerDao.TABLE_NAME)) {
+			createTable();
+			insertCustomers();
+		}
+	}
+
+	private void createTable() throws SQLException {
+		customerDao.create();
+	}
+
+	private void insertCustomers() throws SQLException, IOException, ApplicationException {
+		String fileName = DATA_TO_READ_TXT_FILE;
+		try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+			String line;
+			reader.readLine(); // Skip the header line
+			while ((line = reader.readLine()) != null) {
+				String[] data = line.split(TXT_FILE_DELIMETER);
+				Customer customer = new Customer.Builder(data[0], data[6]).setFirstName(data[1]).setLastName(data[2])
+						.setStreetName(data[3]).setCityName(data[4]).setPostalCode(data[5]).setEmail(data[7])
+						.setJoinDate(data[8]).build();
+				customerDao.add(customer);
+			}
+		}
+		LOG.info("Customers added successfully from file.");
+	}
+
+	private void loadCustomerFrame() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -83,6 +127,20 @@ public class Assignment1 {
 		});
 	}
 
+	private void closeDatabase() {
+		try {
+			if (customerDao != null) {
+				customerDao.commitAndClose();
+			}
+			if (connection != null && !connection.isClosed()) {
+				connection.close();
+				LOG.info("Database connection closed.");
+			}
+		} catch (SQLException | ApplicationException e) {
+			LOG.error("Error closing database: ", e);
+		}
+	}
+
 	private static void configureLogging() {
 		ConfigurationSource source;
 		try {
@@ -96,79 +154,5 @@ public class Assignment1 {
 
 	private static void showUsage() {
 		System.err.println("The database properties file db.properties must be present.");
-	}
-
-	private Assignment1(File dbPropertiesFile) throws IOException {
-		dbProperties = new Properties();
-		dbProperties.load(new FileReader(dbPropertiesFile));
-		database = new Database(dbProperties);
-	}
-
-	private void run() throws SQLException, ClassNotFoundException, IOException {
-		connect();
-
-		try {
-			if (DbUtil.tableExists(connection, CustomerDao.TABLE_NAME)) {
-				dropTable();
-			}
-			createTable();
-			insertCustomers();
-			loadCustomerFrame();
-
-		} finally {
-			if (customerDao != null) {
-//				try {
-//					customerDao.cleanup();
-//				} catch (SQLException e) {
-//					LOG.error("Error during CustomerDao cleanup: " + e.getMessage());
-//				}
-			}
-
-//			if (connection != null && !connection.isClosed()) {
-//				connection.close();
-//				LOG.info("Database connection closed.");
-//			}
-
-			LOG.info("Assignment1 execution completed.");
-		}
-	}
-
-	private void connect() throws SQLException, ClassNotFoundException {
-		database.connect(); // This will load the driver and establish the connection
-		connection = database.getConnection();
-		customerDao = new CustomerDao(database);
-	}
-
-	private void dropTable() throws SQLException {
-		Statement statement = connection.createStatement();
-		String sql = "DROP TABLE " + CustomerDao.TABLE_NAME;
-		DbUtil.executeUpdate(statement, sql);
-		DbUtil.close(statement);
-	}
-
-	private void createTable() throws SQLException {
-		customerDao.create();
-	}
-
-	private void insertCustomers() throws SQLException, IOException {
-	    String fileName = DATA_TO_READ_TXT_FILE;
-	    try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-	        String line;
-	        reader.readLine(); // Skip the header line
-	        while ((line = reader.readLine()) != null) {
-	            String[] data = line.split(TXT_FILE_DELIMETER);
-	            Customer customer = new Customer.Builder(data[0], data[6])
-	                    .setFirstName(data[1])
-	                    .setLastName(data[2])
-	                    .setStreetName(data[3])
-	                    .setCityName(data[4])
-	                    .setPostalCode(data[5])
-	                    .setEmail(data[7])
-	                    .setJoinDate(data[8])
-	                    .build();
-	            customerDao.add(customer);
-	        }
-	    }
-	    LOG.info("Customers added successfully from file.");
 	}
 }
